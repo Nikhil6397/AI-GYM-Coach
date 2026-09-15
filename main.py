@@ -250,11 +250,29 @@ def main():
             async_processing=True
         )
 
+
+
+
+
         sync_metrics_update(context)
+
+        # Safely refresh UI metrics once per second while streaming
+        if context.state.playing:
+            time.sleep(1.0)
+            st.rerun()
 
         inject_webrtc_styles()
 
     st.divider()
+
+
+
+
+    #     sync_metrics_update(context)
+
+    #     inject_webrtc_styles()
+
+    # st.divider()
 
 
 
