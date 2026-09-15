@@ -15,6 +15,25 @@ from groq import Groq
 from services.coaching.llm import LLMCoach
 from services.coaching.tts import TextToSpeech
 from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
+from streamlit_webrtc import RTCConfiguration, webrtc_streamer
+
+
+
+
+RTC_CONFIGURATION = RTCConfiguration(
+    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+)
+
+webrtc_streamer(
+    key="ai-coach",
+    rtc_configuration=RTC_CONFIGURATION,
+    media_stream_constraints={"video": True, "audio": False},
+    # ... your video_frame_callback and other args
+)
+
+
+
+
 
   
 def main():
